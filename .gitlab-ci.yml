@@ -4,10 +4,16 @@ variables:
   FULL_IMAGE_NAME: $IMAGE_NAME:$CI_JOB_ID-$CI_COMMIT_SHORT_SHA
 
 build-image:
+  tags:
+    - my_first_runner
   script: docker build -t $FULL_IMAGE_NAME 
 
 run-app:
+  tags:
+    - my_first_runner
   script: docker run -p 5000:5000 -d --name $CONTAINER_NAME $FULL_IMAGE_NAME
 
 test-job:
+  tags:
+    - my_first_runner
   script: curl localhost:5000
