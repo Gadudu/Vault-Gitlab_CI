@@ -6,7 +6,7 @@ variables:
 build-image:
   tags:
     - my_first_runner
-  script: docker build -t $FULL_IMAGE_NAME 
+  script: docker build -t $FULL_IMAGE_NAME . 
 
 run-app:
   tags:
