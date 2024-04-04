@@ -7,11 +7,11 @@ default:
   tags:
     - my_first_runner
     
-build-image:
+build_job:
   stage: build
   script: docker build -t $FULL_IMAGE_NAME . 
 
-run-app:
+run_job:
   stage: build
   script: docker run -p 5000:5000 -d --name $CONTAINER_NAME $FULL_IMAGE_NAME
 
@@ -19,8 +19,8 @@ test-job:
   stage: test
   script: curl localhost:5000
 
-cleanup:
-  stage: .post
+cleanup_job:
+  stage: cleanup
   script:
     - docker stop $CONTAINER_NAME
     - docker rm $CONTAIMER_NAME
