@@ -28,7 +28,7 @@ cleanup_job:
   stage: cleanup
   script:
     - docker stop $CONTAINER_NAME
-    - docker rm $CONTAIMER_NAME
+    - docker rm $CONTAINER_NAME
     - docker rmi $FULL_IMAGE_NAME
     - docker system prune -f
   when: always
