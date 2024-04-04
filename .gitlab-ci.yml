@@ -1,3 +1,8 @@
+stages:
+  - build
+  - test
+  - cleanup
+
 variables:
   IMAGE_NAME: "simple-web-app"
   CONTAINER_NAME: "PythonApp"
@@ -26,4 +31,4 @@ cleanup_job:
     - docker rm $CONTAIMER_NAME
     - docker rmi $FULL_IMAGE_NAME
     - docker system prune -f
-  
+  when: always
