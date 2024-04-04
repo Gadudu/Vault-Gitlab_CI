@@ -8,15 +8,19 @@ default:
     - my_first_runner
     
 build-image:
+  stage: build
   script: docker build -t $FULL_IMAGE_NAME . 
 
 run-app:
+  stage: build
   script: docker run -p 5000:5000 -d --name $CONTAINER_NAME $FULL_IMAGE_NAME
 
 test-job:
+  stage: test
   script: curl localhost:5000
 
 cleanup:
+  stage: cleanup
   script:
     - docker rmi $FULL_IMAGE_NAME
     - docker system prune -f
