@@ -22,6 +22,8 @@ test-job:
 cleanup:
   stage: .post
   script:
+    - docker stop $CONTAINER_NAME
+    - docker rm $CONTAIMER_NAME
     - docker rmi $FULL_IMAGE_NAME
     - docker system prune -f
   
