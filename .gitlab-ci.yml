@@ -1,12 +1,13 @@
 stages:
   - build
   - test
+  - keep-artifact
   - cleanup
 
 variables:
   IMAGE_NAME: "simple-web-app"
   CONTAINER_NAME: "PythonApp"
-  FULL_IMAGE_NAME: $IMAGE_NAME:$CI_PIPELINE_ID-$CI_COMMIT_SHORT_SHA
+  FULL_IMAGE_NAME: $CI_REGISTRY/root/simplepyapp/$IMAGE_NAME:$CI_PIPELINE_ID-$CI_COMMIT_SHORT_SHA 
 
 default:
   tags:
@@ -23,6 +24,13 @@ run_job:
 test-job:
   stage: test
   script: curl localhost:5000
+
+artifact-job:
+  stage: keep-artifact
+  script: 
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker push $FULL_IMAGE_NAME
+    - docker logout
 
 cleanup_job:
   stage: cleanup
