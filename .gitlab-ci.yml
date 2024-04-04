@@ -20,7 +20,7 @@ test-job:
   script: curl localhost:5000
 
 cleanup:
-  stage: cleanup
+  stage: .post
   script:
     - docker rmi $FULL_IMAGE_NAME
     - docker system prune -f
