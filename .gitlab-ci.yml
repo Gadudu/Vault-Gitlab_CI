@@ -45,7 +45,8 @@ artifact-job:
 cleanup_job:
   stage: cleanup
   script:
-    - docker stop $CONTAINER_NAME || docker rm $CONTAINER_NAME
-    - docker rmi $FULL_IMAGE_NAME
+    - docker stop $CONTAINER_NAME || echo "container not up"
+    - docker rm $CONTAINER_NAME || echo "container does not exist"
+    - docker rmi $FULL_IMAGE_NAME || echo "image wasn't created"
     - docker system prune -f
   when: always
