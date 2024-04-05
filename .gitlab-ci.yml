@@ -21,7 +21,7 @@ build-job:
   stage: build
   script: 
     # get vault secret
-    - vault login -method=userpass username=$VAULT_USER password=$VAULT_PASS 
+    - vault login -no-print=true -method=userpass username=$VAULT_USER password=$VAULT_PASS 
     - export MY_SECRET="$(vault kv get -mount=$VAULT_PATH -field=$VAULT_FIELD $VAULT_SECRET)"
 
     # build docker image with the secret
