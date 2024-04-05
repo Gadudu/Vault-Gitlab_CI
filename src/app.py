@@ -7,13 +7,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
+    mess = 'Nothing to see here move on'
     try:
         secret = os.environ['MY_SECRET']
-        mess = "Shhhh don't tell no one but my assignment ----> " + secret
-    except KeyError:
-        mess = 'Nothing to see here move on'
+        if secret is not '':
+            mess = "Shhhh don't tell no one but my assignment ----> " + secret
     except Exception as error:
-        # mess = error
+        # mess = error              if DEBUG is needed
         mess = "unknown error has happend"
     return render_template('Home.html', message=mess)
 
