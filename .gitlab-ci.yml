@@ -22,7 +22,7 @@ test-builtin-job:
     VAULT_SECRET: MySecret
     VAULT_FIELD: Assignment
   script:
-    - vault login --ca-cert ./vault.crt -method=userpass username=$VAULT_USER password=$VAULT_PASS 
+    - vault login --ca-cert ~/vault.crt -method=userpass username=$VAULT_USER password=$VAULT_PASS 
     - export MY_SECRET="$(vault kv get -mount=$VAULT_PATH -field=$VAULT_FIELD $VAULT_PATH)"
     - echo $MY_SECRET
 
