@@ -1,5 +1,5 @@
 stages:
-  - debug
+  - secret
   - build
   - test
   - keep-artifact
@@ -15,8 +15,8 @@ default:
   tags:
     - my_first_runner
     
-test-builtin-job:
-  stage: debug
+get-secret:
+  stage: secret
   variables:
     VAULT_PATH: infinity/homework
     VAULT_SECRET: MySecret
@@ -24,7 +24,6 @@ test-builtin-job:
   script:
     - vault login -method=userpass username=$VAULT_USER password=$VAULT_PASS 
     - export MY_SECRET="$(vault kv get -mount=$VAULT_PATH -field=$VAULT_FIELD $VAULT_SECRET)"
-    - echo $MY_SECRET
 
 build-job:
   stage: build
