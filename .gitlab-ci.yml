@@ -17,9 +17,18 @@ default:
     
 test-builtin-job:
   stage: debug
+  id_tokens:
+    VAULT_ID_TOKEN:
+      aud: https://ec2-52-3-58-227.compute-1.amazonaws.com
   secrets:
     MY_SECRET:
-      vault: MySecret/Assignment@infinity/homework 
+      vault: 
+        engine:
+          name: kv-v1
+          path: MySecret
+        field: Assignment
+        path: infinity/homework
+      token: $VAULT_ID_TOKEN
   script: 
     - echo $MY_SECRET
 
