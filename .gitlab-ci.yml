@@ -1,5 +1,4 @@
 stages:
-  - secret
   - build
   - test
   - keep-artifact
@@ -21,9 +20,11 @@ default:
 build-job:
   stage: build
   script: 
+    # get vault secret
     - vault login -method=userpass username=$VAULT_USER password=$VAULT_PASS 
     - export MY_SECRET="$(vault kv get -mount=$VAULT_PATH -field=$VAULT_FIELD $VAULT_SECRET)"
-    - echo $MY_SECRET
+
+    # build docker image with the secret
     - docker build --build-arg MY_SEC=${MY_SECRET} -t $FULL_IMAGE_NAME . 
 
 run-job:
@@ -44,8 +45,7 @@ artifact-job:
 cleanup_job:
   stage: cleanup
   script:
-    - docker stop $CONTAINER_NAME
-    - docker rm $CONTAINER_NAME
+    - docker stop $CONTAINER_NAME || docker rm $CONTAINER_NAME
     - docker rmi $FULL_IMAGE_NAME
     - docker system prune -f
   when: always
