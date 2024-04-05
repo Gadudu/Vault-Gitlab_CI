@@ -10,7 +10,7 @@ def hello():
     mess = 'Nothing to see here move on'
     try:
         secret = os.environ['MY_SECRET']
-        if secret is not '':
+        if secret != '':
             mess = "Shhhh don't tell no one but my assignment ----> " + secret
     except Exception as error:
         # mess = error              if DEBUG is needed
