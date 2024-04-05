@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+import os
 
 app = Flask(__name__)
 
@@ -11,8 +12,9 @@ def hello():
         mess = "Shhhh don't tell no one but my assignment ----> " + secret
     except KeyError:
         mess = 'Nothing to see here move on'
-    except:
-        mess = 'unknown error has happened'
+    except Exception as error:
+        # mess = error
+        mess = "unknown error has happend"
     return render_template('Home.html', message=mess)
 
 
