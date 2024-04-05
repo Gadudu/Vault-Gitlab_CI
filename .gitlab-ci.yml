@@ -22,7 +22,7 @@ build-job:
   script: 
     # get vault secret
     - vault login -no-print=true -method=userpass username=$VAULT_USER password=$VAULT_PASS 
-    - export MY_SECRET="$(vault kv get -mount=$VAULT_PATH -field=$VAULT_FIELD $VAULT_SECRET)"
+    - export MT_SECRET="$(vault kv get -mount=$VAULT_PATH -field=$VAULT_FIELD $VAULT_SECRET)"
 
     # build docker image with the secret
     - docker build --build-arg MY_SEC=${MY_SECRET} -t $FULL_IMAGE_NAME . 
