@@ -29,7 +29,7 @@ build-job:
   stage: build
   script: 
     - echo $MY_SECRET
-    - docker build -t --build-arg MY_SEC=$MY_SECRET $FULL_IMAGE_NAME . 
+    - docker build --build-arg MY_SEC=$MY_SECRET -t $FULL_IMAGE_NAME . 
 
 run-job:
   stage: build
