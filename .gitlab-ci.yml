@@ -23,7 +23,7 @@ test-builtin-job:
     VAULT_FIELD: Assignment
   script:
     - vault login -method=userpass username=$VAULT_USER password=$VAULT_PASS 
-    - export MY_SECRET="$(vault kv get -mount=$VAULT_PATH -field=$VAULT_FIELD $VAULT_PATH)"
+    - export MY_SECRET="$(vault kv get -mount=$VAULT_PATH -field=$VAULT_FIELD $VAULT_SECRET)"
     - echo $MY_SECRET
 
 build-job:
