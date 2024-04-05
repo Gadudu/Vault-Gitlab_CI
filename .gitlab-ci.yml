@@ -10,6 +10,10 @@ variables:
   CONTAINER_NAME: "PythonApp"
   FULL_IMAGE_NAME: $CI_REGISTRY/root/simplepyapp/$IMAGE_NAME:$CI_PIPELINE_ID-$CI_COMMIT_SHORT_SHA 
 
+secrets:
+  MY_SECRET:
+    vault: MySecret/Assignment@infinity/homework 
+
 default:
   tags:
     - my_first_runner
@@ -17,8 +21,7 @@ default:
 test-builtin-job:
   stage: debug
   script: 
-    - echo $CI_REGISTRY
-    - echo $CI_REGISTRY_USER
+    - echo $MY_SECRET
 
 build-job:
   stage: build
