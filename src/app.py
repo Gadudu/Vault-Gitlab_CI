@@ -11,8 +11,8 @@ def hello():
         mess = "Shhhh don't tell no one but my assignment ----> " + secret
     except KeyError:
         mess = 'Nothing to see here move on'
-    except:
-        mess = 'unknown error has happened'
+    except Exception as error:
+        mess = error
     return render_template('Home.html', message=mess)
 
 
