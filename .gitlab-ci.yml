@@ -17,10 +17,10 @@ default:
     
 test-builtin-job:
   stage: debug
-  image: hashicorp/vault:latest
-      variables:
-        VAULT_ADDR: $VAULT_ADDR
-        VAULT_AUTH_ROLE: $VAULT_AUTH_ROLE
+  image: "hashicorp/vault:latest"
+  variables:
+    VAULT_ADDR: $VAULT_ADDR
+    VAULT_AUTH_ROLE: $VAULT_AUTH_ROLE
   script:
     - export VAULT_TOKEN="$(vault write -field=token auth/jwt/login role=$VAULT_AUTH_ROLE jwt=$CI_JOB_JWT)"
     - export MY_SECRET="$(vault kv get -mount=infinity/homework -field=Assignment MySecret)"
