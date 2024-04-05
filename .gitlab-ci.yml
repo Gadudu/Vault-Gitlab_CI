@@ -27,11 +27,11 @@ get-secret:
 
 build-job:
   stage: build
-  script: docker build -t $FULL_IMAGE_NAME --build-arg MY_SECRET=$MY_SECRET . 
+  script: docker build -t $FULL_IMAGE_NAME . 
 
 run-job:
   stage: build
-  script: docker run -p 5000:5000 -d --name $CONTAINER_NAME $FULL_IMAGE_NAME
+  script: docker run -p 5000:5000 -e MY_SECRET=$MY_SECRET -d --name $CONTAINER_NAME $FULL_IMAGE_NAME
 
 test-job:
   stage: test
