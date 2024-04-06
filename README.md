@@ -8,22 +8,17 @@
 
 <h3>&ensp; Hosts in use:</h3>
 <ul>
-  <li>
-      Host1= Vault server with static IP: 3.228.30.171
-      <ol>
-        **DNS: ec2-3-228-30-171.compute-1.amazonaws.com 
-      </ol>
-  </li>
-  <li>Host2= Gitlab server with static IP: 52.3.58.227
-      <ol>**DNS: ec2-52-3-58-227.compute-1.amazonaws.com</ol>
-  </li>
-  <li>Host3= Gitlab runner with dinamic IP
-      <ol>
-        **Contact using private IP in subnet 
-      </ol>
-  </li>
+ <li>Host1= Vault server with static IP: 3.228.30.171
+  <br/> &emsp; DNS: ec2-3-228-30-171.compute-1.amazonaws.com 
+ </li>
+ <li>Host2= Gitlab server with static IP: 52.3.58.227
+   <br/> &emsp; DNS: ec2-52-3-58-227.compute-1.amazonaws.com
+ </li>
+ <li>Host3= Gitlab runner with dinamic IP
+   <br/> &emsp; Contact using private IP in subnet      
+ </li>
 </ul>
-> Please ping hosts before using them
+| Please ping hosts before using them
 
 <h2 align="center"> How to install and use </h2>
 
