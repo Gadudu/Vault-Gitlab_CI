@@ -52,7 +52,7 @@
         <li>port 5050 to Container Registry, port 22 to SSH
             <br/>port 80/443 to HTTP/S
         </li>
-        <li>config. logs, data MUST HAVE VOLUMES!!
+        <li>config, logs, data MUST HAVE VOLUMES!!
             <br/>ssl volume for self signed certificates
         </li>
       </ol>
@@ -79,19 +79,23 @@
 <h3> Gitlab Runner</h3>
 <ul>
     <li>run the following commands</li>
+</ul>
 
     curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh" | sudo bash
     sudo apt update && sudo apt install gitlab-runner=16.10.0
 
-<li>this will install the runner as a service with gitlab-runner user</li>
+<ul>
+    <li>this will install the runner as a service with gitlab-runner user</li>
     <li>at /etc/gitlab-runner make certs directory owned by root</li>
     <li>cp Gitlab Host2.crt to that folder</li>
     <li>on Gitlab UI click New Instance Runner</li>
+</ul>
 
     sudo gitlab-runner register --tls-ca-file /etc/gitlab-runner/certs/Host2.crt --url https://Host2  --token {insert token got from gitlab ui}
 
     sudo systemctl restart gitlab-runner
 
-<li>Gitlab runner is installed and registered now let's configure</li>
+<ul>
+  <li>Gitlab runner is installed and registered now let's configure</li>
     <li>install docker like we did in Gitlab</li>
 </ul>
