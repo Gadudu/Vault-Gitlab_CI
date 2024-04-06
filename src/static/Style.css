@@ -1,0 +1,18 @@
+h1 {
+    color: #c9d0d4;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 52px;
+    font-weight: 120;
+    line-height: 70px;
+    letter-spacing: 2px;
+    padding: 25px 0 25px;
+    border-bottom: double #555;
+    border-top: double #555;
+    position: relative;
+    text-align: center;
+    margin-top: 400px;
+    background-color: rgba(132, 136, 132, .4)
+}
+body{
+    background-color: #343434;
+}

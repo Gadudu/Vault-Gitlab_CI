@@ -1,0 +1,60 @@
+stages:
+  - build
+  - test
+  - keep-artifact
+  - cleanup
+
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop" || 
+          ($CI_PIPELINE_SOURCE == 'merge_request_event' && 
+          ( $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master" ))
+
+variables:
+  IMAGE_NAME: "simple-web-app"
+  CONTAINER_NAME: "PythonApp"
+  FULL_IMAGE_NAME: $CI_REGISTRY/root/simplepyapp/$IMAGE_NAME:$CI_PIPELINE_ID-$CI_COMMIT_SHORT_SHA 
+  VAULT_PATH: infinity/homework
+  VAULT_SECRET: MySecret
+  VAULT_FIELD: Assignment
+
+
+default:
+  tags:
+    - my_first_runner
+
+build-job:
+  stage: build
+  variables:
+    GET_SEC: 0
+  script: 
+    # get vault secret
+    - vault login -no-print=true -method=userpass username=$VAULT_USER password=$VAULT_PASS || export GET_SEC=1
+    - if [ $GET_SEC -eq 0 ];then export MY_SECRET="$(vault kv get -mount=$VAULT_PATH -field=$VAULT_FIELD $VAULT_SECRET)"; fi
+
+    # build docker image with the secret
+    - docker build --build-arg MY_SEC=${MY_SECRET} -t $FULL_IMAGE_NAME . 
+
+run-job:
+  stage: build
+  script: docker run -p 5000:5000 -d --name $CONTAINER_NAME $FULL_IMAGE_NAME
+
+test-job:
+  stage: test
+  script: curl localhost:5000
+
+artifact-job:
+  stage: keep-artifact
+  script: 
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker push $FULL_IMAGE_NAME
+    - docker logout
+
+cleanup_job:
+  stage: cleanup
+  script:
+    - docker stop $CONTAINER_NAME || echo "container not up"
+    - docker rm $CONTAINER_NAME || echo "container does not exist"
+    - docker rmi $FULL_IMAGE_NAME || echo "image wasn't created"
+    - docker system prune -f
+  when: always
