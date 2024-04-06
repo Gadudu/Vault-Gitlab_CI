@@ -6,7 +6,9 @@ stages:
 
 workflow:
   rules:
-    - if: $CI_COMMIT_BRANCH == "develop" || ($CI_PIPELINE_SOURCE == 'merge_request_event' && ( $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master" ))
+    - if: $CI_COMMIT_BRANCH == "develop" || 
+          ($CI_PIPELINE_SOURCE == 'merge_request_event' && 
+          ( $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master" ))
 
 variables:
   IMAGE_NAME: "simple-web-app"
@@ -24,7 +26,7 @@ default:
 build-job:
   stage: build
   variables:
-    - GET_SEC: 0
+    GET_SEC: 0
   script: 
     # get vault secret
     - vault login -no-print=true -method=userpass username=$VAULT_USER password=$VAULT_PASS || export GET_SEC=1
