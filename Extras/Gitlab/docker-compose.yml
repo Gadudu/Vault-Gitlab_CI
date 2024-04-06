@@ -1,0 +1,23 @@
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:16.10.1-ce.0
+    container_name: gitlab
+    restart: always
+    hostname: 'ec2-52-3-58-227.compute-1.amazonaws.com'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://ec2-52-3-58-227.compute-1.amazonaws.com'
+        letsencrypt['enable'] = false
+        nginx['redirect_http_to_https'] = true
+        registry_external_url 'https://ec2-52-3-58-227.compute-1.amazonaws.com:5050'
+    ports:
+      - '80:80'
+      - '443:443'
+      - '22:22'
+      - '5050:5050'
+    volumes:
+      - '$GITLAB_HOME/config:/etc/gitlab'
+      - '$GITLAB_HOME/logs:/var/log/gitlab'
+      - '$GITLAB_HOME/data:/var/opt/gitlab'
+      - '$GITLAB_HOME/ssl:/etc/gitlab/ssl'
+    shm_size: '256m'
