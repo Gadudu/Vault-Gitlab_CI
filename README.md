@@ -22,19 +22,19 @@
 
 <h2 align="center"> How to install and use </h2>
 
-<h4>For those who only want the final app:<h4>
+<h4>For those who only want the final app: </h4>
 <br/>
 <ul>
-    <li>Access https://ec2-52-3-58-227.compute-1.amazonaws.com/root/simplepyapp/container_registry/1</li>
-    <li>Choose wanted tag</li>
-    <li>```bash
-        docker run -d --name test -p 5000:5000 ec2-52-3-58-227.compute-1.amazonaws.com:5050/root/simplepyapp/simple-web-app:{SELECTED_TAG}
-        ```
-            <ol>
-                **Replace SELECTED_TAG with the tag you chose
-            </ol> 
-    </li>
-    <li>and the app runs on your local host on port 5000
-        <ol>**Change the port forwarding to which ever port comfortable</ol>
-    </li>
+ <li>Access https://ec2-52-3-58-227.compute-1.amazonaws.com/root/simplepyapp/container_registry/1 </li>
+ <li>Choose wanted tag</li>
+ <li> ``` 
+    <br/>
+    docker run -d --name test -p 5000:5000 ec2-52-3-58-227.compute-1.amazonaws.com:5050/root/simplepyapp/simple-web-app:{SELECTED_TAG}
+    <br/>
+      ```
+    <br/> &emsp; Replace SELECTED_TAG with the tag you chose
+ </li>
+ <li>and the app runs on your local host on port 5000
+    <br/> &emsp; Change the port forwarding to which ever port comfortable</ol>
+ </li>
 </ul>
