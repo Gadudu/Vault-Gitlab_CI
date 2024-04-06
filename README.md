@@ -165,5 +165,6 @@
     sudo chown root:root ./vault
     sudo mv ./vault /usr/local/bin/
 
+<p>|&emsp;replace version with wanted version</p>
 <p>And run 'vault' command to see if it works</p> 
 
