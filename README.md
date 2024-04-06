@@ -168,3 +168,59 @@
 <p>|&emsp;replace version with wanted version</p>
 <p>And run 'vault' command to see if it works</p> 
 
+<br/>
+<h2 align="center">Setting and Setup</h2>
+<h3>Gitlab Server</h3>
+<ul>
+    <li>open new project</li>
+    <li>push files to it</li>
+    <li>setup gitlab-ci.yml file (explained later)</li>
+    <li>register runner like descripted above and give tag</li>
+    <li>define the following environment variables in Project>Settings>CI/CD:
+        <ul>
+            <li>VAULT_ADDR= Vault server Address</li>
+            <li>VAULT_CACERT= Path to vault.crt in gitlab-runner home</li>
+            <li>VAULT_PASS= Vault user 'multics' password</li>
+            <li>VAULT_USER= 'multics' user from vault to auth to</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>Vault Server</h3>
+<ul>
+    <li>set up a new user ('multics')</li>
+    <li>enable k/v engine</li>
+    <li>set up a secret on k/v engine of Assignment=complete</li>
+    <li>create a policy that allows reading this secret</li>
+    <li>connect that policy to the user</li>
+    <li>set the user to be authenticated for 30s before the need to reauthenticate</li>
+</ul>
+
+<br/>
+<h2 align="center"> CI / CD </h2>
+<p>|&emsp;the steps go as followed:</p>
+<ul>
+    <li>build stage:
+        <ul>
+            <li>try getting secret from vault authenticating as 'multics'</li>
+            <li>build the image of the project using a docker file and ARG injection</li>
+            <li>run the container locally for tests</li>
+        </ul>
+    </li>
+    <li>test stage: test connectivity by curl</li>
+    <li>keep-artifact stage:
+        <ul>
+            <li>login to my registry using built in variables</li>
+            <li>push the image i created</li>
+            <li>log out of registry</li>
+        </ul>
+    </li>
+    <li>cleanup stage:
+        <ul>
+            <li>stop the tests container</li>
+            <li>remove the tests container</li>
+            <li>remove the allready pushed image</li>
+            <li>prune the system from unused cache</li>
+        </ul>
+    </li>
+</ul>
