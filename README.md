@@ -1,6 +1,10 @@
 <h1 align="center"> Simple Flask web app using Gitlab ci and Hashicorp Vault </h1>
 <br/>
-<p>In this project I created a small python app the can retrieve a scret from vault and display adjusted content based on the success of the retrieval. <br/>other than that the app is tested for connectivity, packaged in a docker container, and saved in Gitlab Container Registry </p>
+<p>In this project I created a small python app the can retrieve a scret from vault and display adjusted content based on the success of the retrieval.</p>
+<p>other than that the app is tested for connectivity, packaged in a docker container, and saved in Gitlab Container Registry </p>
+<br/>
+
+<p>|&emsp;Important!! we work with many files here. allways make sure the files permmision fit the user who will use it</p>
 
 <h3>&ensp; Hosts in use:</h3>
 <ul>
