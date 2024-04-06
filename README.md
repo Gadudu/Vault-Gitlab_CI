@@ -38,11 +38,11 @@
 <br/>
 <h2 align="center">Configurations</h2>
 <h3> Gitlab: </h3>
-<h4> Prerequisites </h4>
+<h4> prerequisites </h4>
 <ul>
-    <li>Set up ec2 t3.large instance with ubuntu IMA.</li>
-    <li>Open security Groups for 22, 80, 443, 5050, and 2424.</li>
-    <li>change default server ssh port to 2424 to keep 22 open for Gitlab.</li>
+    <li>set up ec2 t3.large instance with ubuntu ima.</li>
+    <li>open security groups for 22, 80, 443, 5050, and 2424.</li>
+    <li>change default server ssh port to 2424 to keep 22 open for gitlab.</li>
     <li>install docker like explained in docker documentation
     <br/>-&ensp; see referances</li>
 </ul>
@@ -92,6 +92,12 @@
 <p>|&emsp;recommended to set up non-admin user for work</p>
 
 <h3> Vault Server </h3>
+<h4> prerequisites </h4>
+<ul>
+    <li>set up ec2 m5.large instance with ubuntu ima.</li>
+    <li>open security groups for 22 (SSH) and 8200.</li>
+</ul>
+
 <h4> Installationn </h4>
 <p>Run the following commands:</p>
 
@@ -126,6 +132,12 @@
 
 
 <h3> Gitlab Runner </h3>
+<h4> prerequisites </h4>
+<ul>
+    <li>set up ec2 t3.medium instance with ubuntu ima.</li>
+    <li>open security groups only for 22 SSH</li>
+</ul>
+
 <h4> Installation </h4>
 <p>Run the following commands:</p>
 
@@ -223,4 +235,11 @@
             <li>prune the system from unused cache</li>
         </ul>
     </li>
+</ul>
+
+<h2 align="center">Referances</h2>
+<ul>
+    <li>/Extras/Gitlab/docker-compose.yml = based on https://docs.gitlab.com/ee/install/docker.html </li>
+    <li>/Extras/Docker_Install/DocInstall.sh = https://docs.docker.com/engine/install/ubuntu/</li>
+    <li>/Extras/CertMaker/ = Made it alone compiled from many resources to insert SAN (Subject Alternative Names)</li>
 </ul>
