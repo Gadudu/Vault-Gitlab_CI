@@ -1,1 +1,1 @@
-<h1> Simple Flask web app using Gitlab ci and Hashicorp Vault </h1>
+<h1 align="center"> Simple Flask web app using Gitlab ci and Hashicorp Vault </h1>
