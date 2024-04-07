@@ -165,7 +165,7 @@
 
 <br/>    
 <h4> Trust Vault server</h4>
-<p>put vault.crt that we created earlier at /home/gitlab-runner/</p>
+<p>copy vault.crt that we created earlier at /home/gitlab-runner/</p>
 
 <br/>
 <h4>Set up Runner dependencies</h4>
@@ -173,15 +173,15 @@
  
 <p>For vault cli do the following commands:</p>
 
-    curl https://releases.hashicorp.com/vault/{version}/vault_{version}_linux_amd64.zip -o vault_1.16.0_linux_amd64.zip
-    curl https://releases.hashicorp.com/vault/1.16.0/vault_1.16.0_SHA256SUMS -o vault_1.16.0_SHA256SUMS
-    sha256sum --ignore-missing -c vault_1.13.2_SHA256SUMS
-    unzip ./vault_1.16.0_linux_amd64.zip
+    curl https://releases.hashicorp.com/vault/{version}/vault_{version}_linux_amd64.zip -o vault_{version}_linux_amd64.zip
+    curl https://releases.hashicorp.com/vault/{version}/vault_{version}_SHA256SUMS -o vault_{version}_SHA256SUMS
+    sha256sum --ignore-missing -c vault_{version}_SHA256SUMS
+    unzip ./vault_{version}_linux_amd64.zip
     sudo chmod 755 ./vault
     sudo chown root:root ./vault
     sudo mv ./vault /usr/local/bin/
 
-<p>|&emsp;replace version with wanted version</p>
+<p>|&emsp;replace version with wanted version I chose 1.16.0</p>
 <p>And run 'vault' command to see if it works</p> 
 
 <br/>
